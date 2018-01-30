@@ -22,10 +22,10 @@ while True:
 	
 	if(GPIO.input(buttonPress) == 1):
 		GPIO.output(ledNumbers, GPIO.LOW)
-		if whichLED == math.floor(length(ledNumbers)/2)
+		if whichLED == math.floor(length(ledNumbers)/2):
 			GPIO.output(ledNumbers[whichLED], GPIO.HIGH)
 			break
-		else
+		else:
 			GPIO.output(ledNumbers[0], GPIO.HIGH)
 
 
@@ -69,4 +69,3 @@ class cycleTimer(object):
 
 
 
-		
