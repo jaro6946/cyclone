@@ -1,0 +1,17 @@
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BCM)
+
+buttonInput=13
+ledNumbers=(19,20,21,22,23,24,25)
+
+
+GPIO.setup(buttonInput, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
+GPIO.setup(ledNumbers, GPIO.OUT)
+
+
+w
+pwm = GPIO.PWM(18, 1000)
+pwm.start(50)
+
+GPIO.cleanup()
