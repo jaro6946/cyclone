@@ -41,15 +41,15 @@ class cycleTimer(object):
 		self.cycleNumber=math.floor(self.cycleTime/self.actionTime)
 		return self.cycleNumber*2
 
-class callMeBack:
+class callMeBack(object):
 
-	def __init__(self)
+	def __init__(self):
 		self.flag=0
 
-	def myCallBack(self)
+	def myCallBack(self,other):
 		self.flag=1
-
-	def checkFlag
+		print(other)
+	def checkFlag(self):
 		return flag
 
 CMB=callMeBack()
