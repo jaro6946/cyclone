@@ -27,9 +27,17 @@ class cycleTimer(object):
 		self.currentTime=time.time()
 		self.cyclePercent=(self.currentTime-self.initTime)/self.cycleLength
 		self.cyclePercent=self.cyclePercent-math.floor(self.cyclePercent)
+                
 		if self.cyclePercent > .5:
-			self.cyclePecent=1-self.cyclePercent
-		self.cycleTime=self.cyclePercent*self.cycleLength
+			#print(self.cyclePercent)
+			self.cyclePercentMod=(100-self.cyclePercent*100)/100
+			#print(self.cyclePercentMod)
+			#print((100-self.cyclePercent*100)/100)
+		else:
+			self.cyclePercentMod=self.cyclePercent
+		#print(self.cyclePercent)
+		self.cycleTime=self.cyclePercentMod*self.cycleLength
+		#print(self.cyclePercent)
 		self.cycleNumber=math.floor(self.cycleTime/self.actionTime)
 		return self.cycleNumber*2
 
@@ -37,8 +45,8 @@ class cycleTimer(object):
 
 GPIO.setmode(GPIO.BCM)
 
-buttonInput=13
-ledNumbers=(19,20,21,22,23,24,25)
+buttonInput=12
+ledNumbers=(18,20,21,22,23,24,25)
 
 
 GPIO.setup(buttonInput, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
@@ -61,19 +69,22 @@ try:
 				GPIO.output(ledNumbers[whichLED], GPIO.HIGH)
 				break
 
-	Strobe1=cycleTimer(time.time(), 3,100)
-	Timer2=cycleTimer(time.time(), 12,2)
+	strobe1=cycleTimer(time.time(), 3,100)
+	timer2=cycleTimer(time.time(), 12,2)
+	GPIO.cleanup()
+	GPIO.setmode(GPIO.BCM)
+	GPIO.setup(22, GPIO.OUT)
+	dutyCyclePast=-1
 
+	pwm = GPIO.PWM(22, 100)
+	pwm.start(25)
 	while True:
-		dutyCycle=strobe1.strobe()
-		pwm = GPIO.PWM(ledNumbers[3], 1000)
-		pwm.start(dutyCycle)
-		if Timer2.cycleNum()==1:
+		if timer2.cycleNum()==1:
 			break
 
 
 
-except KeyboardInterrupt:
+except:
 	GPIO.cleanup()
 	raise
 
