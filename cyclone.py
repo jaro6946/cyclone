@@ -41,8 +41,18 @@ class cycleTimer(object):
 		self.cycleNumber=math.floor(self.cycleTime/self.actionTime)
 		return self.cycleNumber*2
 
+class callMeBack:
 
+	def __init__(self)
+		self.flag=0
 
+	def myCallBack(self)
+		self.flag=1
+
+	def checkFlag
+		return flag
+
+CMB=callMeBack()
 GPIO.setmode(GPIO.BCM)
 
 buttonInput=12
@@ -55,6 +65,9 @@ GPIO.setup(ledNumbers, GPIO.OUT)
 cycleLength=.3
 
 Timer1=cycleTimer(time.time(), cycleLength,len(ledNumbers))
+
+GPIO.add_event_detect(buttonInput, GPIO.RISING, callback=CMB.myCallBack, bouncetime=300)
+
 try:
 	while True:
 		whichLED=Timer1.cycleNum()
@@ -63,7 +76,7 @@ try:
 		GPIO.output(offLEDs, GPIO.LOW)
 		GPIO.output(ledNumbers[whichLED], GPIO.HIGH)
 		
-		if(GPIO.input(buttonInput) == 1):
+		if(CMB.checkFlag == 1):
 			GPIO.output(ledNumbers, GPIO.LOW)
 			if whichLED == math.floor(len(ledNumbers)/2):
 				GPIO.output(ledNumbers[whichLED], GPIO.HIGH)
