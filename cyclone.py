@@ -22,14 +22,14 @@ class cycleTimer(object):
 		self.cycleNumber=math.floor(self.cycleTime/self.actionTime)
 		return self.cycleNumber
 
-class risingEdge(object)
-	def __init__(self)
-		pass
+class risingEdge(object):
+	def __init__(self):
+		self.signalPast=0
 
-	def checkForEdge(self,signal)
+	def checkForEdge(self,signal):
 		self.signal=signal
 		
-		if self.signal==1+self.signalPast
+		if self.signal==1+self.signalPast:
 			self.signalPast=self.signal
 			return True
 		else:
@@ -45,7 +45,7 @@ ledNumbers=(18,20,21,22,23,24,25)
 GPIO.setup(buttonInput, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(ledNumbers, GPIO.OUT)
 
-cycleLength=.3
+cycleLength=2
 
 Timer1=cycleTimer(time.time(), cycleLength,len(ledNumbers))
 checkEdge=risingEdge()
@@ -58,8 +58,9 @@ try:
 		GPIO.output(offLEDs, GPIO.LOW)
 		GPIO.output(ledNumbers[whichLED], GPIO.HIGH)
 		
-		if(checkEdge(GPIO.input(buttonInput)) == 1):
-			time.sleep(.1)
+		if(checkEdge.checkForEdge(GPIO.input(buttonInput)) == 1):
+			print("hell ya")
+			time.sleep(.01)
 			if whichLED == 4:
 				GPIO.output(ledNumbers, GPIO.LOW)
 				break
