@@ -1,13 +1,13 @@
 import RPi.GPIO as GPIO
 import time
 import math
-
+#Code that plays the arcade game cyclone
 
 class cycleTimer(object):
 	
 	def __init__(self, initTime, cycleLength,actionsPerCycle):
 
-		self.actionTime=float(cycleLength)/float(actionsPerCycle)
+		self.actionTime=float(cycleLength)/float(actionsPerCycle) 
 		self.cycleLength=cycleLength
 		self.initTime=initTime
 		self.actionsPerCycle=actionsPerCycle
