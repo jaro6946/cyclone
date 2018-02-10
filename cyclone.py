@@ -1,7 +1,9 @@
 import RPi.GPIO as GPIO
 import time
 import math
-#Code that plays the arcade game cyclones
+
+#Code that plays the arcade game Cyclone 
+
 
 class cycleTimer(object):
 	
