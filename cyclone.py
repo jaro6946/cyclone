@@ -5,6 +5,7 @@ import math
 #Code that plays the interesting game Cyclone.
 
 
+
 class cycleTimer(object):
 	
 	def __init__(self, initTime, cycleLength,actionsPerCycle):
