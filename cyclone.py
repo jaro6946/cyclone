@@ -79,7 +79,7 @@ try:
 	while timer2.cycleNum()<1:
 		pass #pass does nothing, but python requirws a place holder in this instance
 
-except:
+except: #This ensures every GPIO Pin is turned off after exit
 	GPIO.cleanup()
 	raise
 
