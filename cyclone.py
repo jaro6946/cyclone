@@ -7,7 +7,7 @@ class cycleTimer(object):
 	
 	def __init__(self, initTime, cycleLength,actionsPerCycle):
 
-		self.actionTime=cycleLength/actionsPerCycle
+		self.actionTime=float(cycleLength)/float(actionsPerCycle)
 		self.cycleLength=cycleLength
 		self.initTime=initTime
 		self.actionsPerCycle=actionsPerCycle
